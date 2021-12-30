@@ -1,0 +1,1 @@
+dont judge my trash code this is the first time ive done python since like year 10 😎

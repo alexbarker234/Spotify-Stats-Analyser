@@ -163,7 +163,7 @@ def analyse():
     SELECT SUM(msPlayed) as totalTime
     FROM History;
     '''
-    # print(cur.execute(totalMS).fetchone()[0])
+
     totalMinutes = int(cur.execute(totalMS).fetchone()[0] / 60000)
     outputFile.write("Minutes listened to Spotify: %s\n\n" % totalMinutes)
 
@@ -206,7 +206,6 @@ def analyse():
 
     graphListens()
     graphTopArtistSongs(artistGraphNum)
-    #graphArtistSongs('Maisie Peters')
     monthlyTopTimeline()
     graphTopSongs()
     dailyMostListenedPieChart()
@@ -267,6 +266,7 @@ def graphArtistSongs(artistName):
     ''' % artistName
 
     graphAccumulativeListens(cur.execute(artistSongs).fetchall())
+    plt.title('Accumulative listens to ' + artistName)
     plt.savefig('output/Artist Accumulative/Top 10 %s Songs.png' %
                 artistName.replace('/', ' '))
     plt.close()
@@ -282,6 +282,7 @@ def graphTopSongs():
     '''
 
     graphAccumulativeListens(cur.execute(songCount).fetchall())
+    plt.title('Accumulative listens to your top 10 songs')
     plt.savefig('output/Top 10 All Songs.png')
     plt.close()
 
@@ -322,7 +323,6 @@ def graphAccumulativeListens(songList):
         plt.xlabel('Date')
         plt.ylabel('Accumulative Listens')
         plt.legend()
-    # plt.show()
 
 
 def dailyMostListenedPieChart():
@@ -455,10 +455,7 @@ def monthlyTopTimeline():
         if i % 2 == 0:
             levels[i] *= -1
 
-    # Choose some nice levels
-    #levels = np.tile([-5, 5, -3, 3, -1, 1], int(np.ceil(len(dates)/6)))[:len(dates)]
-
-    # Create figure and plot a stem plot with the date
+    # create figure and plot a stem plot with the date
     fig, ax = plt.subplots(figsize=(16, 8))
     ax.set_title("Top Monthly Song & Listens", pad=20)
 

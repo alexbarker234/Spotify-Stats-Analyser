@@ -6,3 +6,4 @@ spotifydata.db
 todo.txt
 .cache
 __pycache__
+ignore/*

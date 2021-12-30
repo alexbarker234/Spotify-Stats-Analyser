@@ -43,4 +43,3 @@ def verifyArtistName(results, artistName):
     if (len(results['tracks']['items']) > 0):
         return results['tracks']['items'][0]['album']['images'][0]['url']
     return None
-#print(findArtwork("I'm the One U Hated", "Capoxxo"))

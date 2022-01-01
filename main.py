@@ -21,6 +21,7 @@ from io import BytesIO
 from PIL import Image
 
 import getAlbumImages
+import dataImporter
 
 load_dotenv()
 
@@ -44,57 +45,6 @@ database = sqlite3.connect('spotifydata.db')
 cur = database.cursor()
 
 
-def importData():
-    if not os.path.exists('input'):
-        os.mkdir('input')
-    timezoneOffset = input("what is your UTC offset : ")
-
-    # create table if it doesnt already exist
-    cur.execute(
-        '''CREATE TABLE IF NOT EXISTS History (endTime datetime, artistName text, trackName text, msPlayed integer)''')
-
-    # clear table
-    cur.execute("DELETE FROM History")
-
-    # parse json
-    for subdir, dirs, files in os.walk("input"):
-        for file in files:
-            if (not file.endswith('.json')):
-                continue
-            f = open(os.path.join(subdir, file), encoding="utf8")
-            print('reading %s' % file)
-            data = json.load(f)
-            for song in data:
-                values = ''
-                for key in song:
-                    if (key == 'msPlayed'):
-                        values += "%s, " % str(song[key])
-                    else:
-                        # sqlite dislikes double quotes, double double quoting fixes that o.o
-                        values += "\"%s\", " % str(song[key]
-                                                   ).replace('"', '""')
-                values = values[:-2]  # remove last 2 chars
-                query = "INSERT INTO History VALUES (%s)" % values
-                #print(bcolors.WARNING + query + bcolors.ENDC)
-                cur.execute(query)
-
-    timezoneOffset
-
-    # remove duplicates and unknown tracks - probably a better way to do this
-    cur.executescript(''' 
-    CREATE TABLE IF NOT EXISTS HistoryTemp (endTime datetime, artistName text, trackName text, msPlayed integer);
-
-    INSERT INTO HistoryTemp SELECT DISTINCT * FROM History WHERE trackName != "Unknown Track";
-
-    UPDATE HistoryTemp SET endTime=DATETIME(endTime, '%s minutes');
-
-    DROP TABLE History;
-
-    ALTER TABLE HistoryTemp
-    RENAME TO History;
-    ''' % timezoneOffset * 60)
-
-    database.commit()
 
 
 def filter():
@@ -507,6 +457,7 @@ def plotImages(x, y, images, ax=None, size=100):
 
 val = input("import data? : ")
 if (val == 'yes'):
-    importData()
+    dataImporter.importData()
 filter()
 analyse()
+

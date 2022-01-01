@@ -1,1 +1,1 @@
-Put your StreamingHistoryX.json files here!
+Put your StreamingHistoryX.json / PlaylistX.json files here!

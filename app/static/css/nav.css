@@ -1,0 +1,118 @@
+/* nav.css */
+
+nav {
+    background-color: var(--bg-color3);
+    text-decoration: none;
+    text-align: left;
+    position:relative;
+
+    color:white;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color:white;
+    text-decoration: none;
+    transition: 300ms;
+} 
+nav a:hover {
+    color: rgb(182, 178, 201);
+    text-decoration: none;
+}
+
+nav p {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-part {
+    width: 33%;
+    height: 6rem;
+    line-height: 6rem;
+    display: block;
+    position:relative;
+}
+
+.nav-left {
+    margin-left: 2rem;
+}
+
+.nav-center{
+    text-align: center;
+}
+
+.nav-right {
+    margin-right: 2rem;
+
+    position:relative;
+    display:flex;
+    justify-content: flex-end;
+}
+.nav-right * {
+    margin-left: 10px;
+}
+.profile-menu {
+    background-color: #151516;
+    border-radius: 4rem;
+    height: 5rem;
+    
+    margin-left: 2rem;
+
+    padding-right: 2rem;
+    padding-left: 0.75rem;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-menu img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 100%;
+
+    object-fit: cover;
+    overflow: hidden;
+
+    margin: 0%;
+    vertical-align:top;
+}
+
+.profile-menu .user-name{
+    font-weight: 700;
+}
+
+.profile-menu .dropdown {
+    width: 0;
+    height: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+
+    width: 100%;
+    top: 100%;
+
+    background-color: #262627;
+    border: 1px #252a31 solid;
+
+    border-radius: 2rem;
+
+    padding: 0rem 2rem;
+    z-index: 1;
+}
+  
+.profile-menu:hover .dropdown-content {
+    display: block;
+}

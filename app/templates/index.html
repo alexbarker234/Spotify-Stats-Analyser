@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>hey!</h1>
+    <a href="/lyricgame">to game</a>
+
+    {% if userdata.authorized %}
+    <h2>top artists</h2>
+    <div id="top-artists"></div>
+    {% endif %}
+{% endblock %}

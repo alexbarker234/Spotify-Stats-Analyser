@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+        <!-- jQuery library -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>    
+
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        {% block scripts %}
+        {% endblock %}
+
+        {% assets "css_all" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">    
+        {% endassets %}
+
+        {% assets "js_all" %}
+        <script src="{{ ASSET_URL }}"></script> 
+        {% endassets %}
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-part nav-left">
+                <a href="{{ url_for('index') }}">Home</a>
+            </div>
+            <div class="nav-part nav-center">
+                <p>title here</p>
+            </div>
+            <div class="nav-part nav-right">
+                {% if not userdata or not userdata.authorized %}
+                <a href="{{ url_for('login') }}">Login</a>
+                {% else %}
+                <div class="user">
+                    
+                </div>
+                <div class ="profile-menu">
+                    <img src="{{ userdata.image_url }}">
+                    <span class="user-name">{{ userdata.username }}</span>
+                    <div class="dropdown">
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('logout') }}" id="logout">Sign Out</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible">
+            <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        {% block content%}
+        {% endblock %}
+    </body>
+</html>

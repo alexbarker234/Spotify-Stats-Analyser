@@ -1,0 +1,9 @@
+input/*
+!input/readme.txt
+output/
+spotifydata.db
+.env
+todo.txt
+.cache
+__pycache__
+ignore/*

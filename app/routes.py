@@ -1,3 +1,5 @@
+import json
+import os
 from flask import render_template, request, url_for, session, redirect, jsonify
 import time
 
@@ -11,10 +13,13 @@ from config import Config
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Home', userdata=UserData())
+    return render_template('index.html', title='Home', userdata={})#, userdata=UserData()
 
 @app.route('/login')
 def login():    
@@ -36,6 +41,19 @@ def authorize():
     token_info = sp_oauth.get_access_token(code)
     session["token_info"] = token_info
     return redirect("/index")
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    try:
+        f = request.files.get('file')
+        path = os.path.join(basedir, "testdir")
+        os.makedirs(path, exist_ok=True)
+        f.save(os.path.join(path, f.filename))
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    except Exception as e:
+        return "An error occured", 500
+
+
 
 # Checks to see if token is valid and gets a new token if not
 def get_token():
@@ -70,6 +88,7 @@ class UserData:
     def __init__(self):
         session['token_info'], self.authorized = get_token()
         session.modified = True
+        print("Getting user data")
         if self.authorized:
             sp = spotipy.Spotify(auth=session.get('token_info').get('access_token'))
             payload = sp.me()

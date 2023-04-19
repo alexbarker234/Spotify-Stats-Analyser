@@ -1,11 +1,27 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <h1>hey!</h1>
-    <a href="/lyricgame">to game</a>
+{% block scripts %}
 
-    {% if userdata.authorized %}
-    <h2>top artists</h2>
-    <div id="top-artists"></div>
-    {% endif %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1>hey!</h1>
+<a href="/lyricgame">to game</a>
+
+{% if userdata.authorized %}
+
+<h2>top artists</h2>
+<div id="top-artists"></div>
+
+{% endif %}
+
+{{ dropzone.create(action='/upload') }}
+{{ dropzone.config() }}
+
+{{ dropzone.load_js() }}
+
 {% endblock %}

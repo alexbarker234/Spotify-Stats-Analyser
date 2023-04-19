@@ -1,0 +1,94 @@
+/* CUSTOM DROPZONE CSS */
+
+.dropzone {
+    width: 50%;
+    margin: auto;
+    height: 200px;
+    cursor: pointer;
+    position: relative;
+
+    background-color: var(--bg-color2);
+    border: var(--border-color) 2px solid;
+    border-radius: 2rem;
+}
+
+.dz-default.dz-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2rem;
+    opacity: 50%;
+}
+
+.dropzone.dz-started .dz-message {
+    display: none;
+}
+
+.dz {
+    margin-top: 180px;
+    border: dashed;
+    border-color: #ccc;
+    border-radius: 10px;
+
+    /* REQUIRED. This will prevent the dropzone area from getting bigger.*/
+    max-height: 150px;
+}
+
+
+/* Here are the other styles for Dropzone. 
+These will give it the same look as in the
+picture. Which I think is better for non image files.*/
+
+/* Manually place the uploaded files.*/
+.dropzone .dz-preview {
+    top: 0px;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    min-height: 0px;
+
+    background-color: green;
+    width: 90%;
+    height: 20px;
+
+    position: relative;
+}
+
+.dz-image,
+.dz-success-mark,
+.dz-error-mark,
+.dz-size {
+    display: none;
+}
+
+.dz-details {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    padding: 0;
+}
+
+.dz-filename {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translate(0, -50%);
+
+    background-color: transparent;
+    padding: 0;
+}
+
+.dz-filename span {
+    background-color: transparent;
+    padding: 0;
+}
+
+.dropzone .dz-preview .dz-details .dz-filename:hover span {
+    background-color: inherit;
+    border: none;
+    padding: 0;
+}

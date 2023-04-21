@@ -3,16 +3,15 @@ from datetime import datetime
 
 class User(db.Model):
     id = db.Column(db.String(120), primary_key=True)
-    username = db.Column(db.String(120))
 
 class Listen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    track_id = db.Column(db.String(120), db.ForeignKey('track.id'))
-    user_id = db.Column(db.String(120), db.ForeignKey('user.id'))
+    track_id = db.Column(db.String(120))
+    user_id = db.Column(db.String(120), db.ForeignKey('user.id', name="fk_user_id"))
 
     end_time = db.Column(db.DateTime, index=True)
-    ms_listened = db.Column(db.Integer)
+    ms_played = db.Column(db.Integer)
 
 class Track(db.Model):
     id = db.Column(db.String(120), primary_key=True)
@@ -30,5 +29,5 @@ class Artist(db.Model):
 class TrackArtist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    artist_id = db.Column(db.String(120), db.ForeignKey('artist.id'))
-    track_id = db.Column(db.String(120), db.ForeignKey('track.id'))
+    artist_id = db.Column(db.String(120), db.ForeignKey('artist.id', name="fk_artist_id"))
+    track_id = db.Column(db.String(120), db.ForeignKey('track.id', name="fk_track_id"))

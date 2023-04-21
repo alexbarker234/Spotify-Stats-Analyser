@@ -20,21 +20,18 @@ assets = Environment(app)
 dropzone = Dropzone(app)
 
 # bundles
-files = glob.glob("app/static/css/*.css")
-files = [i.replace('app/static/','') for i in files] # remove path as flask_assets works from static directory
-css = Bundle(*files, output='gen/packed.css')
+css_files = glob.glob("app/static/css/*.css")
+css_files = [i.replace('app/static/','') for i in css_files] # remove path as flask_assets works from static directory
+css = Bundle(*css_files, output='gen/packed.css')
 assets.register('css_all', css)
 
+
+js_files = glob.glob("app/static/scripts/*.js")
+js_files = [i.replace('app/static/','') for i in js_files] # remove path as flask_assets works from static directory
+css = Bundle(*js_files, output='gen/packed.js')
+assets.register('js_all', css)
 # could potentially include jQuery & bootstrap.js in here
-'''
-js = Bundle('scripts/extensions.js', 
-            'scripts/main.js', 
-            'scripts/index.js',
-            'scripts/game/lyricgame.js',
-            'scripts/game/playlistScreen.js',
-            output='gen/main.js')
-assets.register('js_all', js)
-'''
+
 # logging
 if not app.debug:
     if not os.path.exists('logs'):

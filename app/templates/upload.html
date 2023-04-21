@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if userdata.authorized %}
+
+<form action="{{ url_for('upload') }}" class="dropzone"></form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
+<!--5.7.1-->
+
+{% endif %}
+
+
+{% endblock %}

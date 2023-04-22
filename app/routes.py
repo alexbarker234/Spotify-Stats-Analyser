@@ -40,7 +40,7 @@ def logout():
 @app.route('/authorize')
 def authorize():
     SpotifyHelper.authorise()
-    return redirect("/index")
+    return redirect("/")
 
 
 @app.route('/upload-file', methods=['POST'])

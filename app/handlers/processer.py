@@ -48,6 +48,10 @@ def ParseEndSongs():
             if endsong.user_id != user.id:
                 continue
 
+            # spotify only counts listens as above 30 seconds
+            if endsong.ms_played < 30000:
+                continue
+
             listen = Listen(user_id=user.id,
                             track_id=endsong.track_id,
                             end_time=datetime.datetime.fromisoformat(endsong.end_time[:-1]),

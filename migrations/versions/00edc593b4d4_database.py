@@ -1,8 +1,8 @@
-"""init
+"""database
 
-Revision ID: ce6f7d47ccf0
+Revision ID: 00edc593b4d4
 Revises: 
-Create Date: 2023-04-20 17:41:26.304815
+Create Date: 2023-04-24 16:25:45.576177
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ce6f7d47ccf0'
+revision = '00edc593b4d4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,6 +27,7 @@ def upgrade():
     op.create_table('track',
     sa.Column('id', sa.String(length=120), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=True),
+    sa.Column('from_spotify', sa.Boolean(), nullable=True),
     sa.Column('preview_url', sa.String(), nullable=True),
     sa.Column('image_url', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -41,8 +42,7 @@ def upgrade():
     sa.Column('user_id', sa.String(length=120), nullable=True),
     sa.Column('end_time', sa.DateTime(), nullable=True),
     sa.Column('ms_played', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['track_id'], ['track.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], name='fk_user_id'),
     sa.PrimaryKeyConstraint('id')
     )
     with op.batch_alter_table('listen', schema=None) as batch_op:
@@ -52,8 +52,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('artist_id', sa.String(length=120), nullable=True),
     sa.Column('track_id', sa.String(length=120), nullable=True),
-    sa.ForeignKeyConstraint(['artist_id'], ['artist.id'], ),
-    sa.ForeignKeyConstraint(['track_id'], ['track.id'], ),
+    sa.ForeignKeyConstraint(['artist_id'], ['artist.id'], name='fk_artist_id'),
+    sa.ForeignKeyConstraint(['track_id'], ['track.id'], name='fk_track_id'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

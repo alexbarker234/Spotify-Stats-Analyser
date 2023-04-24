@@ -15,8 +15,9 @@ class Listen(db.Model):
 
 class Track(db.Model):
     id = db.Column(db.String(120), primary_key=True)
-
     name = db.Column(db.String(120))
+
+    from_spotify = db.Column(db.Boolean(), default=False)
     preview_url = db.Column(db.String(), nullable=True)
     image_url = db.Column(db.String(), nullable=True)
 

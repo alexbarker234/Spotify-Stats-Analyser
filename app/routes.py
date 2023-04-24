@@ -1,12 +1,13 @@
 import os
-import sys
 
 from flask import jsonify, redirect, render_template, session
 from app.helpers.spotipy import SpotifyHelper, UnauthorisedException
 
 from app import app
 from app.handlers.processer import ParseEndSongs
+from app.handlers.stats import StatsHandler
 from app.models import Listen
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -17,6 +18,7 @@ def indexPage():
 
 @app.route('/stats')
 def statsPage():
+    print(StatsHandler.top_tracks())
     return render_template('stats.html', title='Stats', userdata=UserData())
 
 @app.route('/upload')

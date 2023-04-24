@@ -3,13 +3,14 @@
 .dropzone {
     width: 50%;
     margin: auto;
-    height: 200px;
+    margin-top: 2rem;
+    height: 400px;
     cursor: pointer;
     position: relative;
 
     background-color: var(--bg-color2);
     border: var(--border-color) 2px solid;
-    border-radius: 2rem;
+    overflow-y: scroll;
 }
 
 .dz-default.dz-message {
@@ -36,12 +37,6 @@
     max-height: 150px;
 }
 
-
-/* Here are the other styles for Dropzone. 
-These will give it the same look as in the
-picture. Which I think is better for non image files.*/
-
-/* Manually place the uploaded files.*/
 .dropzone .dz-preview {
     top: 0px;
     margin: auto;
@@ -54,6 +49,14 @@ picture. Which I think is better for non image files.*/
     height: 20px;
 
     position: relative;
+}
+
+.dz-processing:not(.dz-success)::after {
+    content: "Processing...";
+}
+
+.dz-success::after {
+    content: "Success";
 }
 
 .dz-image,
@@ -75,16 +78,22 @@ picture. Which I think is better for non image files.*/
 .dz-filename {
     position: absolute;
     top: 50%;
+    max-width: 35%;
     left: 2rem;
     transform: translate(0, -50%);
 
     background-color: transparent;
     padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dz-filename span {
     background-color: transparent;
     padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .dropzone .dz-preview .dz-details .dz-filename:hover span {

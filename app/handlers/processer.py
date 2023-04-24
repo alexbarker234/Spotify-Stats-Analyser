@@ -4,6 +4,7 @@ from flask import request
 from app import db
 import traceback
 import sqlalchemy as sa
+from sqlalchemy.dialects.sqlite import insert
 from colorama import Fore
 from abc import ABC, abstractmethod
 from app.models import Listen, User, Track, Artist
@@ -36,6 +37,8 @@ def ParseEndSongs():
             db.session.add(db_user)
         i = 0
 
+        tracks = {}
+
         for endsong in endsongs:
             if i % 100 == 0:
                 print(f'{i}/{len(endsongs)}', end='\r')
@@ -43,7 +46,7 @@ def ParseEndSongs():
             # skip bad entries (local files, errors)
             if not endsong or not endsong.track_id:
                 continue
-            #print(endsong)
+            # print(endsong)
             # if the user uploads the wrong files
             if endsong.user_id != user.id:
                 continue
@@ -52,15 +55,30 @@ def ParseEndSongs():
             if endsong.ms_played < 30000:
                 continue
 
+            # add track to dict for inserting
+            tracks[endsong.track_id] = {'id':endsong.track_id, 'name':endsong.track_name}
+
+            # insert the listen
             listen = Listen(user_id=user.id,
                             track_id=endsong.track_id,
-                            end_time=datetime.datetime.fromisoformat(endsong.end_time[:-1]),
+                            end_time=datetime.datetime.fromisoformat(
+                                endsong.end_time[:-1]),
                             ms_played=int(endsong.ms_played))
             db.session.add(listen)
+
+        # add tracks if they dont exist
+        track_list = list(tracks.values())
+        batch_size = 999 # sqlite has a 999 limit
+        for i in range(0, len(track_list), batch_size):
+            batch = track_list[i:i+batch_size]  # get the next batch of data
+            stmt = insert(Track).values(batch).on_conflict_do_nothing(index_elements=['id'])
+            db.session.execute(stmt)
+
         # delete duplicates - if file is uploaded multiple times
 
         # get the maximum id by end time
-        inner_q = db.session.query(sa.func.max(Listen.id)).filter_by(user_id = user.id).group_by(Listen.end_time)
+        inner_q = db.session.query(sa.func.max(Listen.id)).filter_by(
+            user_id=user.id).group_by(Listen.end_time)
         # get the rows that arent in that & delete
         q = Listen.query.filter(~Listen.id.in_(inner_q))
         for domain in q:

@@ -3,6 +3,8 @@ logs
 .env
 userdata
 
+app.db
+
 tmp-env
 venv*
 

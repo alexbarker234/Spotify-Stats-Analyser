@@ -26,7 +26,7 @@ css = Bundle(*css_files, output='gen/packed.css')
 assets.register('css_all', css)
 
 
-js_files = glob.glob("app/static/scripts/*.js")
+js_files = glob.glob("app/static/js/*.js")
 js_files = [i.replace('app/static/','') for i in js_files] # remove path as flask_assets works from static directory
 css = Bundle(*js_files, output='gen/packed.js')
 assets.register('js_all', css)

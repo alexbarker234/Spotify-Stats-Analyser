@@ -18,7 +18,6 @@ def indexPage():
 
 @app.route('/stats')
 def statsPage():
-    print(StatsHandler.top_tracks())
     return render_template('stats.html', title='Stats', userdata=UserData())
 
 @app.route('/upload')
@@ -52,10 +51,16 @@ def upload():
 @app.route('/total-listens')
 def total_listens():
     try:
-        sp = SpotifyHelper()
-        user = sp.current_user()
-        listens = Listen.query.filter_by(user_id = user.id).count()
-        return jsonify(listens)
+        return jsonify(StatsHandler.total_listens())
+    except UnauthorisedException:
+        return ""
+    except Exception as e:
+        return ""
+
+@app.route('/top-tracks/<number>')
+def top_tracks(number):
+    try:
+        return jsonify(StatsHandler.top_tracks(int(number)))
     except UnauthorisedException:
         return ""
     except Exception as e:

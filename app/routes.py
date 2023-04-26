@@ -20,6 +20,10 @@ def indexPage():
 def statsPage():
     return render_template('stats.html', title='Stats', userdata=UserData())
 
+@app.route('/stats/track/<track_id>')
+def statsTrackPage(track_id):
+    return render_template('statsTrack.html', title='Stats', userdata=UserData())
+
 @app.route('/upload')
 def uploadPage():
     return render_template('upload.html', title='Upload', userdata=UserData())
@@ -65,6 +69,26 @@ def top_tracks(number):
         return ""
     except Exception as e:
         return ""
+
+@app.route('/listens-graph/<track_id>')
+def listens_graph(track_id):
+    try:
+        return jsonify(StatsHandler.listens_graph(track_id))
+    except UnauthorisedException:
+        return ""
+    except Exception as e:
+        return ""
+
+@app.route('/track-data/<track_id>')
+def track_data(track_id):
+    try:
+        return jsonify(StatsHandler.track_data(track_id))
+    except UnauthorisedException:
+        return ""
+    except Exception as e:
+        return ""
+
+
 
 class UserData:
     def __init__(self):

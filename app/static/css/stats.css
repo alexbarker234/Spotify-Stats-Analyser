@@ -1,7 +1,7 @@
 #top-tracks {
     background-color: var(--bg-color2);
     width: 100%;
-    
+
     display: grid;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
 
     display: flex;
     flex-direction: column;
-    
+
     overflow-y: hidden;
 
     transition: 0.2s;
@@ -35,13 +35,117 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-
 }
+
+.track-container img {
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.track-container img:hover {
+    -webkit-filter: brightness(50%);
+    filter: brightness(50%);
+}
+
 .track-title {
     font-weight: bold;
 }
 
+#track-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: black;
+}
+
+#top-container {
+    width: 60%;
+    height: 400px;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#song-info-container {
+    display: block;
+}
+
+#stream-chart-container {
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    height: 40%;
+    max-height: 300px;
+    min-height: 100px;
+}
+
+#album-art {
+    width: 100%;
+    max-width: 400px;
+}
+#album-art img {
+    width: 100%;
+    height: 100%;
+}
+
+#title-container {
+    height: 20%;
+    position: relative;
+}
+#title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+}
+
+#lyric-container {
+    overflow: hidden;
+    height: 80%;
+    position: relative;
+}
+#lyrics {
+    animation: scroll 60s linear infinite;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+#lyric-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, var(--bg-color), rgba(0, 0, 0, 0), var(--bg-color));
+    z-index: 5;
+}
+
+@keyframes scroll {
+    from {
+        -moz-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+    to {
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+}
+
 @keyframes fade-drop-in {
-    from { opacity: 0; transform: translateY(-3rem); }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+    to {
+        opacity: 1;
+    }
 }

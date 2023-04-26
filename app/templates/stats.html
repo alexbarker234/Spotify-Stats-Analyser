@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1"></script>
 {% endblock %}
 
 
@@ -12,8 +13,12 @@
 {% if userdata.authorized %}
 
 <h2>top artists</h2>
+
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
 <div id="total-listens"></div>
 <div id="top-tracks"></div>
+
 
 {% endif %}
 

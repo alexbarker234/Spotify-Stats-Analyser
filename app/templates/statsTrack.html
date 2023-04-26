@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1"></script>
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if userdata.authorized %}
+
+<div id="top-container">
+    <div id="album-art"></div>
+    <div id="song-info-container">
+        <div id="title-container">
+            <h2 id="title"></h2>
+        </div>
+        <div id="lyric-container">
+            <div id="lyrics">
+                <div>Duh-duh-duh-duh, duh-duh-dum<br>Duh-duh-duh-duh, duh-duh-dum<br>Duh-duh-duh-duh, duh-duh-dum</div>
+                <div>Don&apos;t be surprised when you open your eyes<br>And you find there&apos;s no one to hold<br>Thought I could stay but I&apos;m just in the way<br>And this feeling&apos;s now gettin&apos; old</div>
+                <div>Too young to make our promises made<br>That I&apos;ll go wherever you go<br>Safer to stay and wait for the day<br>&apos;Cause I&apos;ll do it better alone</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+                <div>Don&apos;t be surprised when you open your eyes<br>And you find I&apos;m suddenly gone<br>Gave you the signs and I walked on the line<br>For far too long</div>
+                <div>Too young to make our promises made<br>I&apos;ll go wherever you go<br>Safer to stay and wait for the day<br>&apos;Cause I&apos;ll do it better alone</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+                <div>Duh-duh-duh-duh (duh-duh-duh)<br>Duh-duh-duh-duh (duh-duh-dum)<br>Duh-duh-duh-duh, uh-uh<br>Duh-duh-duh-duh (duh-duh-duh)<br>Duh-duh-duh-duh (duh-duh-dum)<br>Duh-duh-duh-duh, uh-uh</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+                <div>Duh-duh-duh-duh, duh-duh-dum<br>Duh-duh-duh-duh, duh-duh-dum<br>Duh-duh-duh-duh, duh-duh-dum</div>
+                <div>Don&apos;t be surprised when you open your eyes<br>And you find there&apos;s no one to hold<br>Thought I could stay but I&apos;m just in the way<br>And this feeling&apos;s now gettin&apos; old</div>
+                <div>Too young to make our promises made<br>That I&apos;ll go wherever you go<br>Safer to stay and wait for the day<br>&apos;Cause I&apos;ll do it better alone</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+                <div>Don&apos;t be surprised when you open your eyes<br>And you find I&apos;m suddenly gone<br>Gave you the signs and I walked on the line<br>For far too long</div>
+                <div>Too young to make our promises made<br>I&apos;ll go wherever you go<br>Safer to stay and wait for the day<br>&apos;Cause I&apos;ll do it better alone</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+                <div>Duh-duh-duh-duh (duh-duh-duh)<br>Duh-duh-duh-duh (duh-duh-dum)<br>Duh-duh-duh-duh, uh-uh<br>Duh-duh-duh-duh (duh-duh-duh)<br>Duh-duh-duh-duh (duh-duh-dum)<br>Duh-duh-duh-duh, uh-uh</div>
+                <div>I&apos;d like to stay and make it all okay<br>But it&apos;s just too soon and it&apos;s not me or you<br>Tell me if it&apos;s strange, and I&apos;m maybe deranged<br>And you think it&apos;s a phase but I know that it&apos;s not<br>I met you too soon for anything to bloom</div>
+            </div>
+            <div id="lyric-overlay"></div>
+        </div>
+    </div>
+</div>
+<div id="stream-chart-container">
+    <canvas id="streamChart"></canvas>
+</div>
+<div id="total-streams"></div>
+<div id="total-minutes"></div>
+<div id="first-stream"></div>
+<div id="rank"></div>
+
+
+
+{% endif %}
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 nav {
     background-color: var(--bg-color3);
+    background: linear-gradient(125deg, var(--purple) 0%, var(--red) 100%);
     text-decoration: none;
     text-align: left;
     position: relative;
@@ -16,13 +17,18 @@ nav {
     align-items: center;
 }
 
-
 /* LOGO */
 .logo {
     display: flex;
     text-decoration: none;
     font-size: 2rem;
     width: fit-content;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* NAV BUTTONS */
@@ -33,7 +39,7 @@ nav {
     display: inline-block;
 }
 .nav-button.selected {
-    border-bottom: 2px var(--spotify-green) solid
+    border-bottom: 2px var(--spotify-green) solid;
 }
 
 nav a {
@@ -87,9 +93,9 @@ nav p {
 /* profile menu */
 
 .profile-dropdown .btn {
-    background-color: #151516;
+    background-color: #68a3ea;
     border-radius: 4rem;
-    height: 90%;
+    height: 80%;
 
     margin-left: 2rem;
 
@@ -110,14 +116,14 @@ nav p {
 .profile-dropdown .btn:hover {
     background-color: var(--spotify-green);
 }
-.profile-dropdown .btn:focus{
+.profile-dropdown .btn:focus {
     box-shadow: unset;
     background-color: var(--spotify-green);
 }
 
 .profile-image {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
 
     object-fit: cover;
@@ -155,12 +161,11 @@ nav p {
     background-color: var(--bg-color2);
 }
 #sign-out {
-    color: rgb(184, 49, 49)
+    color: rgb(184, 49, 49);
 }
 #sign-out:hover {
-    color: rgb(158, 34, 86)
+    color: rgb(158, 34, 86);
 }
-
 
 .show-on-mobile {
     display: none;
@@ -179,11 +184,15 @@ nav p {
         padding: 0;
         background-color: transparent;
     }
+    .profile-dropdown .btn:focus,
+    .profile-dropdown .btn:hover {
+        background-color: transparent;
+    }
     .profile-image {
         margin: 0;
     }
     .nav-right {
-       padding-right: 1rem;
+        padding-right: 1rem;
     }
     .nav-part .nav-button {
         padding: 0;

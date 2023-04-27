@@ -1,4 +1,5 @@
 $(window).on("load", function () {
+    console.log("test")
     if (window.location.pathname === "/stats") {
         loadStats();
     }

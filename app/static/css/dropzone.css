@@ -1,7 +1,8 @@
 /* CUSTOM DROPZONE CSS */
 
 .dropzone {
-    width: 50%;
+    width: 90%;
+    max-width: 960px;
     margin: auto;
     margin-top: 2rem;
     height: 400px;
@@ -44,19 +45,13 @@
     margin-top: 0.5rem;
     min-height: 0px;
 
-    background-color: green;
+    background-color: transparent;
     width: 90%;
-    height: 20px;
+    height: 2rem;
+
+    border-bottom: 2px solid var(--bg-color3);
 
     position: relative;
-}
-
-.dz-processing:not(.dz-complete)::after {
-    content: "Processing...";
-}
-
-.dz-success::after {
-    content: "Success";
 }
 
 .dz-image,
@@ -66,13 +61,32 @@
     display: none;
 }
 
-.dz-details {
+.dz-details, .dz-error-message,
+.dz-success::after,
+.dz-processing:not(.dz-complete)::after {
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 0%;
     left: 0%;
     padding: 0;
+}
+
+.dz-error-message {
+    text-align: right;
+    padding-right: 2rem;
+    color: var(--red)
+}
+
+.dz-processing:not(.dz-complete)::after {
+    content: "Processing...";
+    padding-right: 2rem;
+    text-align: right;
+}
+
+.dz-success::after {
+    content: "Success";
+    padding-right: 2rem;
+    text-align: right;
 }
 
 .dz-filename {

@@ -42,8 +42,16 @@ function loadTrackStats(trackID) {
                 datasets: [
                     {
                         data: dataArr,
-                        borderColor: "#1DB954",
-                        backgroundColor: "#1DB954",
+                        //borderColor: "#1DB954",
+                        borderColor: function (context) {
+                            const chart = context.chart;
+                            const { ctx, chartArea } = chart;
+
+                            if (!chartArea) return;
+                            
+                            return getGradient(ctx, chartArea);
+                        },
+                        borderWidth: 2,
                         fill: false,
                         spanGaps: true,
                     },
@@ -86,7 +94,11 @@ function loadTrackStats(trackID) {
     $.getJSON(`https://spotify-lyric-api.herokuapp.com/?trackid=${trackID}`)
         .done(function (data) {
             for (let i = 0; i < 2; i++) {
-                data.lines.forEach(element => $("#lyrics").append($('<div>', { class: 'lyric-line', html: element.words })));
+                data.lines.forEach((element) =>
+                    $("#lyrics").append(
+                        $("<div>", { class: "lyric-line", html: element.words })
+                    )
+                );
             }
         })
         // try genius lyrics if spotify ones r broken
@@ -94,11 +106,42 @@ function loadTrackStats(trackID) {
             $.getJSON(`/genius-lyrics/${trackID}`)
                 .done(function (data) {
                     for (let i = 0; i < 2; i++) {
-                        data.forEach(element => $("#lyrics").append($('<div>', { class: 'lyric-line', html: element })));
+                        data.forEach((element) =>
+                            $("#lyrics").append(
+                                $("<div>", {
+                                    class: "lyric-line",
+                                    html: element,
+                                })
+                            )
+                        );
                     }
                 })
                 .fail(function () {
-                    console.log('could not get lyrics')
-                })
-        })
+                    console.log("could not get lyrics");
+                });
+        });
+}
+
+let width, height, gradient;
+function getGradient(ctx, chartArea) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    if (!gradient || width !== chartWidth || height !== chartHeight) {
+        // Create the gradient because this is either the first render
+        // or the size of the chart has changed
+        width = chartWidth;
+        height = chartHeight;
+        gradient = ctx.createLinearGradient(
+            chartArea.left,
+            0,
+            chartArea.right,
+            0
+        );
+
+        var style = getComputedStyle(document.body)
+        gradient.addColorStop(0, style.getPropertyValue('--purple'));
+        gradient.addColorStop(1, style.getPropertyValue('--red'));
+    }
+
+    return gradient;
 }

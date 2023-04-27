@@ -56,7 +56,7 @@ def ParseEndSongs():
                 continue
 
             # add track to dict for inserting
-            tracks[endsong.track_id] = {'id':endsong.track_id, 'name':endsong.track_name}
+            tracks[endsong.track_id] = {'id':endsong.track_id, 'name':endsong.track_name, 'artist_name':endsong.artist_name}
 
             # insert the listen
             listen = Listen(user_id=user.id,

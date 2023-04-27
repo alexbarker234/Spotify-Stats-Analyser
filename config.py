@@ -10,6 +10,9 @@ class Config(object):
     SPOTIPY_CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
     SPOTIPY_CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 
+    # Genius
+    GENIUS_TOKEN = os.environ.get('GENIUS_TOKEN')
+
     # Databases
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')

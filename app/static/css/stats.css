@@ -73,8 +73,10 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
 #song-info-container {
     display: block;
+    width:100%
 }
 
 #stream-chart-container {
@@ -90,6 +92,7 @@
     width: 100%;
     max-width: 400px;
 }
+
 #album-art img {
     width: 100%;
     height: 100%;
@@ -97,26 +100,34 @@
 
 #title-container {
     height: 20%;
+    width: 100%;
     position: relative;
 }
+
 #title {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     margin: 0;
 }
 
 #lyric-container {
     overflow: hidden;
     height: 80%;
+
+    width: 100%;
+    max-width: 400px;
+
     position: relative;
 }
+
 #lyrics {
     animation: scroll 60s linear infinite;
     text-overflow: clip;
-    white-space: nowrap;
+    font-size: 2rem;
 }
+
 #lyric-overlay {
     height: 100%;
     width: 100%;
@@ -127,12 +138,17 @@
     z-index: 5;
 }
 
+.lyric-line {
+    animation: fade-in 1s;
+}
+
 @keyframes scroll {
     from {
         -moz-transform: translateY(0%);
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
     }
+
     to {
         -moz-transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
@@ -145,6 +161,17 @@
         opacity: 0;
         transform: translateY(-3rem);
     }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
     to {
         opacity: 1;
     }

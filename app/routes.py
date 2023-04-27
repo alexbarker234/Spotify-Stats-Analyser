@@ -1,9 +1,10 @@
 import os
 
-from flask import jsonify, redirect, render_template, session
+from flask import abort, jsonify, redirect, render_template, session
+from app.helpers.genius_helper import GeniusHelper
 from app.helpers.spotipy import SpotifyHelper, UnauthorisedException
 
-from app import app
+from app import app, db
 from app.handlers.processer import ParseEndSongs
 from app.handlers.stats import StatsHandler
 from app.models import Listen
@@ -88,7 +89,12 @@ def track_data(track_id):
     except Exception as e:
         return ""
 
-
+@app.route('/genius-lyrics/<track_id>')
+def genius_lyrics(track_id):
+    result = GeniusHelper.get_lyrics(track_id)
+    if result == None:
+        return abort(404)
+    return jsonify(result)
 
 class UserData:
     def __init__(self):

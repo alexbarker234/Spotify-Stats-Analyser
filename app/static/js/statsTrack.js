@@ -83,4 +83,24 @@ function loadTrackStats(trackID) {
             },
         });
     });
+    $.getJSON(`https://spotify-lyric-api.herokuapp.com/?trackid=${trackID}`)
+        .done(function (data) {
+            for (let i = 0; i < 2; i++) {
+                data.lines.forEach(element => $("#lyrics").append($('<div>', { class: 'lyric-line', html: element.words })));
+            }
+
+            console.log(lyrics)
+        })
+        // try genius lyrics if spotify ones r broken
+        .fail(function (jqxhr, textStatus, error) {
+            $.getJSON(`/genius-lyrics/${trackID}`)
+                .done(function (data) {
+                    for (let i = 0; i < 2; i++) {
+                        data.forEach(element => $("#lyrics").append($('<div>', { class: 'lyric-line', html: element })));
+                    }
+                })
+                .fail(function () {
+                    console.log('could not get lyrics')
+                })
+        })
 }

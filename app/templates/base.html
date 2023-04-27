@@ -2,9 +2,9 @@
 <html>
     <head>
         <title>{{ title }}</title>
-        <!-- Latest compiled and minified Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        
         <!-- jQuery library -->
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <script
@@ -14,7 +14,7 @@
         </script>    
 
         <!-- Bootstrap JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
         {% block scripts %}
         {% endblock %}
@@ -31,34 +31,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <nav>
-            <div class="nav-part nav-left">
-                <a href="{{ url_for('indexPage') }}">Home</a>
-                <a href="{{ url_for('statsPage') }}">Stats</a>
-                <a href="{{ url_for('uploadPage') }}">Upload</a>
-            </div>
-            <div class="nav-part nav-center">
-                <p>title here</p>
-            </div>
-            <div class="nav-part nav-right">
-                {% if not userdata or not userdata.authorized %}
-                <a href="{{ url_for('login') }}">Login</a>
-                {% else %}
-                <div class="user">
-                    
-                </div>
-                <div class ="profile-menu">
-                    <img src="{{ userdata.image_url }}">
-                    <span class="user-name">{{ userdata.username }}</span>
-                    <div class="dropdown">
-                    </div>
-                    <div class="dropdown-content">
-                        <a href="{{ url_for('logout') }}" id="logout">Sign Out</a>
-                    </div>
-                </div>
-                {% endif %}
-            </div>
-        </nav>
+        {% include "nav.html" %}
 
         {% for message in get_flashed_messages() %}
         <div class="alert alert-success alert-dismissible">

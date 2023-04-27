@@ -1,0 +1,92 @@
+<nav class="top-nav">
+    <div class="nav-part nav-left">
+        <div class="hide-on-mobile">
+            <a class="nav-button" href="{{ url_for('indexPage') }}">Home</a>
+            <a class="nav-button" href="{{ url_for('statsPage') }}">Stats</a>
+            <a class="nav-button" href="{{ url_for('uploadPage') }}">Upload</a>
+        </div>
+    </div>
+    <div class="nav-part nav-center">
+        <a class="logo" href="{{ url_for('indexPage') }}">
+            <div class="logo-part">S</div>
+            <div>
+                <svg class="logo-part" viewBox="0 0 340 340" width="14" height="14" class="fwTMCeAaUoWDj9WcQbgy">
+                    <path fill="currentColor"
+                        d="M8 171c0 92 76 168 168 168s168-76 168-168S268 4 176 4 8 79 8 171zm230 78c-39-24-89-30-147-17-14 2-16-18-4-20 64-15 118-8 162 19 11 7 0 24-11 18zm17-45c-45-28-114-36-167-20-17 5-23-21-7-25 61-18 136-9 188 23 14 9 0 31-14 22zM80 133c-17 6-28-23-9-30 59-18 159-15 221 22 17 9 1 37-17 27-54-32-144-35-195-19zm379">
+                    </path>
+                </svg>
+            </div>
+            <div class="logo-part">ngversation</div>
+        </a>
+    </div>
+    <div class="nav-part nav-right">
+        {% if not userdata or not userdata.authorized %}
+        <a class="nav-button" href="{{ url_for('login') }}">
+            <div class="show-on-mobile" style="padding:0px; width:64px">
+                <svg width="30px" height="30px" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M426.666667 736V597.333333H128v-170.666666h298.666667V288L650.666667 512 426.666667 736M341.333333 85.333333h384a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H341.333333a85.333333 85.333333 0 0 1-85.333333-85.333334v-170.666666h85.333333v170.666666h384V170.666667H341.333333v170.666666H256V170.666667a85.333333 85.333333 0 0 1 85.333333-85.333334z"
+                        fill="#ffffff" />
+                </svg>
+            </div>
+            <div class="hide-on-mobile">Login</div>
+        </a>
+        {% else %}
+
+        <div class="profile-dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img class="profile-image" src="{{ userdata.image_url }}">
+                <div class="hide-on-mobile">{{ userdata.username }}</div>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a href="#">Profile</a>
+                <hr>
+                <a id="sign-out" href="{{ url_for('logout') }}">Sign Out</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="show-on-mobile">
+    <nav class="navbar navbar-expand navbar-custom fixed-bottom">
+        <ul class="navbar-nav nav-fill w-100">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <div class="svg">
+                        <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 490.4 490.4" xml:space="preserve">
+                            <g>
+                                <path
+                                    d="M17.2,251.55c-9.5,0-17.2,7.7-17.2,17.1v179.7c0,9.5,7.7,17.2,17.2,17.2h113c9.5,0,17.1-7.7,17.1-17.2v-179.7     c0-9.5-7.7-17.1-17.1-17.1L17.2,251.55L17.2,251.55z M113,431.25H34.3v-145.4H113V431.25z" />
+                                <path
+                                    d="M490.4,448.45v-283.7c0-9.5-7.7-17.2-17.2-17.2h-113c-9.5,0-17.2,7.7-17.2,17.2v283.6c0,9.5,7.7,17.2,17.2,17.2h113     C482.7,465.55,490.4,457.85,490.4,448.45z M456.1,431.25h-78.7v-249.3h78.7L456.1,431.25L456.1,431.25z" />
+                                <path
+                                    d="M301.7,465.55c9.5,0,17.1-7.7,17.1-17.2V42.05c0-9.5-7.7-17.2-17.1-17.2h-113c-9.5,0-17.2,7.7-17.2,17.2v406.3     c0,9.5,7.7,17.2,17.2,17.2H301.7z M205.9,59.25h78.7v372h-78.7L205.9,59.25L205.9,59.25z" />
+                            </g>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <div class="svg">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3,12.3v7a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2v-7" fill="none" stroke="#ffffff"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <polyline data-name="Right" fill="none" id="Right-2" points="7.9 6.7 12 2.7 16.1 6.7"
+                                    stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <line fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" x1="12" x2="12" y1="16.3" y2="4.8" />
+                            </g>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

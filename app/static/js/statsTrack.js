@@ -88,8 +88,6 @@ function loadTrackStats(trackID) {
             for (let i = 0; i < 2; i++) {
                 data.lines.forEach(element => $("#lyrics").append($('<div>', { class: 'lyric-line', html: element.words })));
             }
-
-            console.log(lyrics)
         })
         // try genius lyrics if spotify ones r broken
         .fail(function (jqxhr, textStatus, error) {

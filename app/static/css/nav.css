@@ -4,9 +4,9 @@ nav {
     background-color: var(--bg-color3);
     text-decoration: none;
     text-align: left;
-    position:relative;
+    position: relative;
 
-    color:white;
+    color: white;
 
     margin: 0;
     padding: 0;
@@ -17,10 +17,11 @@ nav {
 }
 
 nav a {
-    color:white;
+    color: white;
     text-decoration: none;
     transition: 300ms;
-} 
+    padding: 0rem 1rem 0rem 1rem;
+}
 nav a:hover {
     color: rgb(182, 178, 201);
     text-decoration: none;
@@ -36,22 +37,22 @@ nav p {
     height: 6rem;
     line-height: 6rem;
     display: block;
-    position:relative;
+    position: relative;
 }
 
 .nav-left {
     margin-left: 2rem;
 }
 
-.nav-center{
+.nav-center {
     text-align: center;
 }
 
 .nav-right {
     margin-right: 2rem;
 
-    position:relative;
-    display:flex;
+    position: relative;
+    display: flex;
     justify-content: flex-end;
 }
 .nav-right * {
@@ -61,7 +62,7 @@ nav p {
     background-color: #151516;
     border-radius: 4rem;
     height: 5rem;
-    
+
     margin-left: 2rem;
 
     padding-right: 2rem;
@@ -69,7 +70,7 @@ nav p {
 
     position: relative;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
 
     display: flex;
     justify-content: center;
@@ -85,10 +86,10 @@ nav p {
     overflow: hidden;
 
     margin: 0%;
-    vertical-align:top;
+    vertical-align: top;
 }
 
-.profile-menu .user-name{
+.profile-menu .user-name {
     font-weight: 700;
 }
 
@@ -112,7 +113,7 @@ nav p {
     padding: 0rem 2rem;
     z-index: 1;
 }
-  
+
 .profile-menu:hover .dropdown-content {
     display: block;
 }

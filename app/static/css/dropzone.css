@@ -10,7 +10,7 @@
 
     background-color: var(--bg-color2);
     border: var(--border-color) 2px solid;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .dz-default.dz-message {
@@ -51,7 +51,7 @@
     position: relative;
 }
 
-.dz-processing:not(.dz-success)::after {
+.dz-processing:not(.dz-complete)::after {
     content: "Processing...";
 }
 

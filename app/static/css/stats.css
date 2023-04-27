@@ -64,7 +64,8 @@
 }
 
 #top-container {
-    width: 60%;
+    width: 100%;  
+    max-width: 1150px;
     height: 400px;
     margin: auto;
     margin-top: 2rem;
@@ -91,6 +92,7 @@
 #album-art {
     width: 100%;
     max-width: 400px;
+    margin: auto;
 }
 
 #album-art img {
@@ -117,7 +119,7 @@
     height: 80%;
 
     width: 100%;
-    max-width: 400px;
+    padding: 0 2rem 0 2rem;
 
     position: relative;
 }
@@ -142,6 +144,23 @@
     animation: fade-in 1s;
 }
 
+@media only screen and (max-width: 800px) {
+    #top-container {
+        flex-direction: column;
+        height: auto;
+    }
+    #lyric-container {
+        height: 20rem;
+    }
+    #title-container {
+        height: auto;
+    }
+    #title {
+        position:unset;
+        transform: none;
+        padding: 1rem 0rem 1rem 0rem;
+    }
+}
 @keyframes scroll {
     from {
         -moz-transform: translateY(0%);
